@@ -1,15 +1,17 @@
 import requests
 import bs4 as bs
-#from string import split
 from time import asctime
 
-valet1 = "https://blockchain.info/address/115p7UMMngoj1pMvkpHijcRdfJNXj6LrLn"
-valet2 = "https://blockchain.info/address/12t9YDPgwueZ9NyMgw519p7AA8isjr6SMw"
-valet3 = "https://blockchain.info/address/13AM4VW2dhxYgXeQepoHkHSQuy6NgaEb94"
+# WannaCry valets
 exchange_url = "http://www.xe.com/currency/xbt-bitcoin"
-all_valets = [valet1, valet2, valet3]
+all_valets = [
+	"https://blockchain.info/address/115p7UMMngoj1pMvkpHijcRdfJNXj6LrLn",
+	"https://blockchain.info/address/12t9YDPgwueZ9NyMgw519p7AA8isjr6SMw",
+	"https://blockchain.info/address/13AM4VW2dhxYgXeQepoHkHSQuy6NgaEb94"
+]
 
 
+# Calculates all info
 def wannacry_calc(url_list):
 	bitcoin_list = []
 	victims_list = []
@@ -26,6 +28,7 @@ def wannacry_calc(url_list):
 	print_func(bitcoin_list, victims_list)
 
 
+#Prints all calculated info in terminal
 def print_func(btc_list, victims_list):
 	print("\n  ----WannaCry Ransomware earnings tracker----\n")
 	get_date()
@@ -41,6 +44,7 @@ def print_func(btc_list, victims_list):
 	return
 
 
+#Get Bitcoin - Euro exchange rate
 def get_rate():
 	s = requests.get(exchange_url)
 	sauce = s.text
@@ -50,6 +54,7 @@ def get_rate():
 	return cell
 
 
+#Get date
 def get_date():
 	date = asctime()
 	date = date.split(" ")
